@@ -44,7 +44,7 @@ export const CreateToken: FC = () => {
               uses: null,
               collection: null,
             },
-            isMutable: false,
+            isMutable: true,
             collectionDetails: null,
           },
         },
