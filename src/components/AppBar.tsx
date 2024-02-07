@@ -85,6 +85,9 @@ export const AppBar: FC = (props) => {
           <Link href="/uploader">
             <a className="mr-8">Upload Metadata</a>
           </Link>
+          <Link href="/block">
+            <a className="mr-8">Block Wallet</a>
+          </Link>
           <Link href="/metadata">
             <a className="mr-4">Token Metadata</a>
           </Link>

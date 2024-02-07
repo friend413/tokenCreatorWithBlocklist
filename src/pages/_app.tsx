@@ -14,7 +14,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <>
           <Head>
-            <title>Solana Scaffold Lite</title>
+            <title>BlackList</title>
           </Head>
 
           <ContextProvider>
@@ -24,7 +24,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
               <ContentContainer>
                 <Component {...pageProps} />
               </ContentContainer>
-              <Footer/>
+              {/* <Footer/> */}
             </div>
           </ContextProvider>
         </>
