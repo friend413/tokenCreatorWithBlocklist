@@ -1,32 +1,32 @@
 <pre>
-# Solana Token Creator with Blockist
+<h1># Solana Token Creator with Blockist</h1>
 
-## Wallent Connect
+<h2>## Wallent Connect</h2>
 
 You can use 'select wallet' button to select wallet type and 'connect' button to connect to selected wallet.
 We recommend 'Solflare Wallet'.
 
 And then you need to save your secret key as utf8 int array into 'public/secretKey.json'.
 
-## Creating a Token
+<h2>## Creating a Token</h2>
 
 You need to airdrop sol at 'Token Creator' page using 'Airdrop 1' button to deploy your token to devenet and submit transactions.
 
 And then you can create your token with your specific info.
 If you input metadata url, you need to match name and symbol to metadata file content.
 
-## Confirming Token
+<h2>## Confirming Token</h2>
 
 You can confirm token with any transaction( ex. transfer )
 
-## Block List 
+<h2>## Block List </h2>
 
 You need to fill 2 inputs at 'Block Wallet' page.
 
 First input is 'Wallet Address' to block. so you can fill it with some wallet address of dangerous man.
 Second input is 'Token Address' of created token by yourself. so you can fill it with token address just created at 'Token Creator' page and you can get the address at 'https://explorer.solana.com/address'.
 
-## Upload Token Metadata
+<h2>## Upload Token Metadata</h2>
 
 You can upload your metadata for token to online server with some pay at 'Upload Metadata' page.
 
@@ -71,7 +71,7 @@ example for metadata file content:
   }
 
 
-## Update Token Metadata
+<h2>## Update Token Metadata</h2>
 
 You can update your token metadata at 'Update Metadata' page.
 Here, you need to input token name and symbol according to metadata file content.
@@ -84,7 +84,7 @@ L3: https://arweave.net/CF8urT2JOZIKi02Z5J7tqhqo80ZxRix3qkn2Q-vmjw0
 L4: https://arweave.net/W0wszvJMGpMMcJTgi52kyyyRxzsy22G2rH5bDmi5jN0
 L5: https://arweave.net/ROmEMxaNbQkHbE1NSwzaCmUl3cktqic4n7MUBDlgJU4
 
-## Get Token Metadata
+<h2>## Get Token Metadata</h2>
 
 You can confirm the update of token metadata at 'Token Metadata' page.
 Here, you only need to input token address and then you will receive token metadata.
