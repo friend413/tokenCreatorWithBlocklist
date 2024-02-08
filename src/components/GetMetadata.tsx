@@ -31,7 +31,6 @@ export const GetMetadata: FC = () => {
         setLogo(image);
       }
 
-      console.log(metadata.data.name)
       setTokenMetadata({ tokenMetadata, ...metadata.data });
       setLoaded(true);
       setTokenAddress('')

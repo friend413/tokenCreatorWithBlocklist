@@ -15,7 +15,6 @@ export const BlockWallet: FC = () => {
   const blockWallet = useCallback(async (form) => {
       if (!publicKey) {
           notify({ type: 'error', message: `Wallet not connected!` });
-          console.log('error', `Send Transaction: Wallet not connected!`);
           return;
       }
 
@@ -24,8 +23,6 @@ export const BlockWallet: FC = () => {
           const feePayer = await Keypair.fromSecretKey( Uint8Array.from(secretKey) );
           const preOwner = new PublicKey(form.walletAddress);
 
-          console.log(form.walletAddress);
-          console.log(form.tokenAddress);
           const owner = new PublicKey(form.walletAddress);  
           
           const mintPubkey = new PublicKey(form.tokenAddress);
