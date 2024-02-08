@@ -1,6 +1,11 @@
 <pre>
 <h1># Solana Token Creator with Blockist</h1>
 
+<h2>## Select Net</h2>
+
+You can select solana net using dropdown list aligned around right corner.
+We recommend choosing devnet. If you choose 'mainnet-beta', you have to pay real crypto.
+
 <h2>## Wallent Connect</h2>
 
 You can use 'select wallet' button to select wallet type and 'connect' button to connect to selected wallet.

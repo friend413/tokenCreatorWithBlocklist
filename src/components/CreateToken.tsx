@@ -14,6 +14,7 @@ export const CreateToken: FC = () => {
   const [amount, setAmount] = useState('')
   const [decimals, setDecimals] = useState('')
 
+  console.log(connection)
   const onClick = useCallback(async (form) => {
       let signature: TransactionSignature = '';
       try {
