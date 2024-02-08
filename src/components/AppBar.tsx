@@ -88,9 +88,9 @@ export const AppBar: FC = (props) => {
           <Link href="/block">
             <a className="mr-8">Block Wallet</a>
           </Link>
-          {/* <Link href="/metadata">
+          <Link href="/metadata">
             <a className="mr-4">Token Metadata</a>
-          </Link> */}
+          </Link>
           <div className="dropdown">
             <div tabIndex={0} className="btn btn-square btn-ghost text-right">
               <svg

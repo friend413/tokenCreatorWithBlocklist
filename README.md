@@ -1,170 +1,47 @@
-# Solana Token Creator
+# Solana Token Creator with Blockist
 
-## Creating a Solana Token
+## Wallent Connect
 
-[Demo](https://token-creator-lac.vercel.app/)
+You can use 'set wallet' button to select wallet type and 'connect' button to connect to selected wallet.
+We recommend 'Solflare Wallet'.
 
-You can use the token creator application to create a token and
-sent it to your wallet. This application is purely for demonstration
-purposes.
+And then you need to save your secret key as utf8 int array into 'public/secretKey.json'.
 
-## Full Breakdown
+## Creating a Token
 
-Creating a Solana token requires the following steps:
+You need to airdrop sol at 'Token Creator' page using 'Airdrop 1' button to deploy your token to devenet and submit transactions.
 
-1. Creating a new Mint account
-2. Creating an associated token account
-3. Minting an amount of the token to the associated token account
-4. Adding the token metadata to the mint account
+And then you can create your token with your specific info.
 
-### Creating a new mint account
+## Confirming Token
 
-Mint accounts hold information about the token such as how 
-many decimals the token has and who can mint new tokens.
+You can confirm token with any transaction( ex. transfer )
 
-You can create a custom keypair for the mint account by
-[grinding a keypair](https://solanacookbook.com/references/keypairs-and-wallets.html#how-to-generate-a-vanity-address). 
-This keypair's public key will be used to have a vanity address 
-for the token. Create a new mint account with that key
-by first initializing the account and space for the mint 
-account, then calling `createInitializeMintInstruction`. 
-These instructions can be added and executed in the same 
-transaction.
+## Block List 
 
-```typescript
-const Transaction = new Transaction().add(
-  SystemProgram.createAccount({
-      fromPubkey: publicKey,
-      newAccountPubkey: mintKeypair.publicKey,
-      space: MINT_SIZE,
-      lamports: lamports,
-      programId: TOKEN_PROGRAM_ID,
-  }),
-  createInitializeMintInstruction(
-    mintKeypair.publicKey, 
-    form.decimals, 
-    publicKey, 
-    publicKey, 
-    TOKEN_PROGRAM_ID)
-);
-```
+You need to fill 2 inputs at 'Block Wallet' page.
 
-### Creating an Associated Token Account
+First input is 'Wallet Address' to block. so you can fill it with some wallet address of dangerous man.
+Second input is 'Token Address' of created token by yourself. so you can fill it with token address just created at 'Token Creator' page and you can get the address at 'https://explorer.solana.com/address'.
 
-Associated Token Accounts are derived from the mint account's
-address. They hold the token's balance and can be used to transfer
-tokens from one wallet to another.
+## Upload Token Metadata
 
-Normally when getting ATA's for a user, you would use
-`getOrCreateAssociatedTokenAccount`. This function will create the
-ATA if it doesn't exist.
+You can upload your metadata for token to online server with some pay at 'Upload Metadata' page.
 
-In our case, we created a brand new mint account and know the ATA will
-not exist. So we can make a transaction with the 
-`createAssociatedTokenAccountInstruction`, getting the derived address
-with `getAssociatedTokenAddress`.
+First, you need to connect devnet using 'Select Network' dropdown list and 'Connect' button.
+Second, you need to upload your logo image for token and then you will be received a url of uploaded image.
+Third, you need to make a metadata file using image url and other info, and then you can upload the metadata.
 
-```typescript
-const Transaction = new Transaction().add(
-  createAssociatedTokenAccountInstruction(
-    publicKey,
-    tokenATA,
-    publicKey,
-    mintKeypair.publicKey,
-  )
-);
-```
-
-### Minting Tokens
-
-When you mint tokens, you increase the overall supply of the token.
-You can mint tokens by using `createMintToInstruction` in a transaction.
-
-```typescript
-const Transaction = new Transaction().add(
-  createMintToInstruction(
-    mintKeypair.publicKey,
-    tokenATA,
-    publicKey,
-    form.amount
-  )
-);
-```
-
-### Adding the Token Metadata
-
-When you create a token, you want to make sure that the token shows up
-in user's wallets with a name, ticker, and image. Solana uses the [Token
-Metadata Program from Metaplex](https://docs.metaplex.com/token-metadata/specification#token-standards) to achieve this.
-
-The metadata account address is derived from the mint account. The metadata
-field requires a JSON file to be populated with at least the following:
-
-```json
-{
-  "name": "Coin name",
-  "symbol": "Symbol",
-  "image": "Image link"
-}
-```
-
-You can find an example [here](https://token-creator-lac.vercel.app/token_metadata.json).
-
-To attach the metadata to the mint account, you can use `CreateMetadataV2`.
-
-```typescript
-const createMetadataTransaction = new CreateMetadataV2(
-  { feePayer: publicKey },
+metadata file ex.
   {
-    metadata: metadataPDA,
-    metadataData: tokenMetadata,
-    updateAuthority: publicKey,
-    mint: mintKeypair.publicKey,
-    mintAuthority: publicKey,
-  },
-)
-```
+    "name": "A test token",
+    "symbol": "TEST",
+    "description": "Fully for testing purposes only",
+    "image": "https://token-creator-lac.vercel.app/token_image.png"
+  }
 
-`tokenMetadata` is the JSON file you want to attach to the mint account.
-Some people use Arweave to host their metadata. You can also use any other
-online storage solution.
+## Update Token Metadata
 
-### All Done!
-
-Following all of the steps above, you should now have a token minted.
-
-The best part is that you can actually add all of these instructions
-to a single transaction:
-
-```typescript
-const createMintTransaction = new Transaction().add(
-  SystemProgram.createAccount({
-      fromPubkey: publicKey,
-      newAccountPubkey: mintKeypair.publicKey,
-      space: MINT_SIZE,
-      lamports: lamports,
-      programId: TOKEN_PROGRAM_ID,
-  }),
-  createInitializeMintInstruction(
-    mintKeypair.publicKey, 
-    form.decimals, 
-    publicKey, 
-    publicKey, 
-    TOKEN_PROGRAM_ID),
-  createAssociatedTokenAccountInstruction(
-    publicKey,
-    tokenATA,
-    publicKey,
-    mintKeypair.publicKey,
-  ),
-  createMintToInstruction(
-    mintKeypair.publicKey,
-    tokenATA,
-    publicKey,
-    form.amount
-  )
-);
-```
-You can find the full source code for this application [here](https://github.com/jacobcreech/Token-Creator/blob/master/src/components/CreateToken.tsx).
+You can update your token metadata at 'Update Metadata' page.
 
 Enjoy your new token!
