@@ -78,9 +78,13 @@ And you input a metadata url like following.
 
 example for metadata url. (use only url except 'L%d: ')
 L1: https://arweave.net/TmYCb6amwOqGjXDeKcsoLtQM3Q0mCI8rBM59M8AxBW8
+
 L2: https://arweave.net/x8IeSUb240mRDyptwYHgrwck6oSEW4inMqVQXqzM-9E
+
 L3: https://arweave.net/CF8urT2JOZIKi02Z5J7tqhqo80ZxRix3qkn2Q-vmjw0
+
 L4: https://arweave.net/W0wszvJMGpMMcJTgi52kyyyRxzsy22G2rH5bDmi5jN0
+
 L5: https://arweave.net/ROmEMxaNbQkHbE1NSwzaCmUl3cktqic4n7MUBDlgJU4
 
 ## Get Token Metadata
