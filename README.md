@@ -37,7 +37,7 @@ metadata file ex.
     "name": "A test token",
     "symbol": "TEST",
     "description": "Fully for testing purposes only",
-    "image": "https://token-creator-lac.vercel.app/token_image.png"
+    "image": "your uploaded image url"
   }
 
 ## Update Token Metadata
