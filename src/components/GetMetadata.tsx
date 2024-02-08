@@ -12,6 +12,7 @@ export const GetMetadata: FC = () => {
 
   const getMetadata = useCallback(
     async (form) => {
+      setLogo(null)
       const tokenMint = new PublicKey(form.tokenAddress);
       const metadataPDA = PublicKey.findProgramAddressSync(
 				[
@@ -20,22 +21,30 @@ export const GetMetadata: FC = () => {
 					tokenMint.toBuffer(),
 				],
 				PROGRAM_ID,
-			)[0]
-      console.log(metadataPDA.toBase58());
+			)[0];
       const metadataAccount = await connection.getAccountInfo(metadataPDA);
-      console.log(metadataAccount);
       const [metadata, _] = await Metadata.deserialize(metadataAccount.data);
-      console.log(metadata);
-      let logoRes = await fetch(metadata.data.uri);
-      let logoJson = await logoRes.json();
-      let { image } = logoJson;
+      if( metadata.data.uri?.length != 0 && metadata.data.uri[0] != '\u0000' ){
+        let logoRes = await fetch(metadata.data.uri);
+        let logoJson = await logoRes.json();
+        let { image } = logoJson;
+        setLogo(image);
+      }
+
+      console.log(metadata.data.name)
       setTokenMetadata({ tokenMetadata, ...metadata.data });
-      setLogo(image);
       setLoaded(true);
       setTokenAddress('')
     },
     [tokenAddress]
   );
+
+  const mytrim = ( str: any ) => {
+    if(!str) return null;
+    let i = 0;
+    while(str[i] && str[i] != '\u0000') i ++;
+    return String(str).slice(0, i );
+  }
 
   return (
     <>
@@ -43,7 +52,7 @@ export const GetMetadata: FC = () => {
         <input
           type='text'
           value={tokenAddress}
-          className='form-control block mb-2 ml-auto mr-auto max-w-800 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+          className='form-control min-w-[400px] block mb-2 ml-auto mr-auto max-w-800 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
           placeholder='Token Address'
           onChange={(e) => setTokenAddress(e.target.value)}
         />
@@ -53,7 +62,7 @@ export const GetMetadata: FC = () => {
           <span>Get Metadata</span>
         </button>
       </div>
-      <div className='my-6'>
+      <div className='my-6 min-w-[400px]'>
         {!loaded ? undefined : (
             <div className='bg-white shadow overflow-hidden sm:rounded-lg'>
               <div className='px-4 py-5 sm:px-6'>
@@ -77,7 +86,7 @@ export const GetMetadata: FC = () => {
                         name
                       </dt>
                       <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-                        {tokenMetadata.name}
+                        {mytrim(tokenMetadata?.name)}
                       </dd>
                     </div>
                     <div className='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
@@ -85,7 +94,7 @@ export const GetMetadata: FC = () => {
                         symbol
                       </dt>
                       <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-                        {tokenMetadata.symbol || 'undefined'}
+                        { mytrim(tokenMetadata?.symbol) || 'undefined'}
                       </dd>
                     </div>
                     <div className='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
@@ -93,7 +102,7 @@ export const GetMetadata: FC = () => {
                         uri
                       </dt>
                       <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>
-                        <a href={tokenMetadata.uri} target='_blank' rel="noreferrer">{tokenMetadata.uri}</a>
+                        <a href={mytrim(tokenMetadata?.uri)} target='_blank' rel="noreferrer">{mytrim(tokenMetadata?.uri)}</a>
                       </dd>
                     </div>
                   </>

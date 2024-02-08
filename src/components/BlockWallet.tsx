@@ -5,7 +5,6 @@ import { Signer, Keypair, PublicKey, SystemProgram, sendAndConfirmTransaction, T
 import bs58 from 'bs58';
 import { Metadata, PROGRAM_ID } from '@metaplex-foundation/mpl-token-metadata';
 import { notify } from "../utils/notifications";
-import { Console } from 'console';
 const secretKey = require('../../public/secretkey.json');
 export const BlockWallet: FC = () => {
   const { connection } = useConnection();
@@ -41,14 +40,11 @@ export const BlockWallet: FC = () => {
               mintPubkey,
               authority,
             )
-          );
-          console.log(tx);
-              
-          console.log(`txhash: ${await sendAndConfirmTransaction(connection, tx, [feePayer])}`);
+          );  
+          signature = await sendAndConfirmTransaction(connection, tx, [feePayer]);
           notify({ type: 'success', message: 'Transaction successful!', txid: signature });
       } catch (error: any) {
           notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
-          console.log('error', `Transaction failed! ${error?.message}`, signature);
           return;
       }
   }, [publicKey, notify, connection, sendTransaction]);
@@ -70,13 +66,11 @@ export const BlockWallet: FC = () => {
           placeholder='Token Address'
           onChange={(e) => setTokenAddress(e.target.value)}
         />
-        <div className='flex flex-row-reverse'>
-          <button
-            className='px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
-            onClick={() => blockWallet({ walletAddress, tokenAddress })}>
-            <span>ADD to BLOCKLIST</span>
-          </button>
-        </div>
+        <button
+          className='px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+          onClick={() => blockWallet({ walletAddress, tokenAddress })}>
+          <span>ADD to BLOCKLIST</span>
+        </button>
       </div>
       <div className='my-6'>
         

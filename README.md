@@ -2,7 +2,7 @@
 
 ## Wallent Connect
 
-You can use 'set wallet' button to select wallet type and 'connect' button to connect to selected wallet.
+You can use 'select wallet' button to select wallet type and 'connect' button to connect to selected wallet.
 We recommend 'Solflare Wallet'.
 
 And then you need to save your secret key as utf8 int array into 'public/secretKey.json'.
@@ -12,6 +12,7 @@ And then you need to save your secret key as utf8 int array into 'public/secretK
 You need to airdrop sol at 'Token Creator' page using 'Airdrop 1' button to deploy your token to devenet and submit transactions.
 
 And then you can create your token with your specific info.
+If you input metadata url, you need to match name and symbol to metadata file content.
 
 ## Confirming Token
 
@@ -32,16 +33,59 @@ First, you need to connect devnet using 'Select Network' dropdown list and 'Conn
 Second, you need to upload your logo image for token and then you will be received a url of uploaded image.
 Third, you need to make a metadata file using image url and other info, and then you can upload the metadata.
 
-metadata file ex.
+example for metadata file content:
   {
-    "name": "A test token",
-    "symbol": "TEST",
-    "description": "Fully for testing purposes only",
-    "image": "your uploaded image url"
+    "name": "LONE",
+    "symbol": "LE",
+    "description": "Celebratory Solflare NFT for the Solflare X launch",
+    "seller_fee_basis_points": 0,
+    "image": "https://arweave.net/WBtBoITC6MrNTOJhFdaqsLOliglRujbCOQPnG2Z5PY0?ext=png",
+    "external_url": "https://solflare.com",
+    "attributes": [
+      {
+        "trait_type": "web",
+        "value": "yes"
+      },
+      {
+        "trait_type": "mobile",
+        "value": "yes"
+    },
+    {
+        "trait_type": "extension",
+        "value": "yes"
+      }
+    ],
+    "collection": {
+      "name": "UpdatedByFUNC",
+      "family": "Solflare" 
+    },
+    "properties": {
+      "files": [
+        {
+          "uri": "https://arweave.net/WBtBoITC6MrNTOJhFdaqsLOliglRujbCOQPnG2Z5PY0?ext=png",
+          "type": "image/png"
+        }
+      ]
+    }
   }
+
 
 ## Update Token Metadata
 
 You can update your token metadata at 'Update Metadata' page.
+Here, you need to input token name and symbol according to metadata file content.
+And you input a metadata url like following.
+
+example for metadata url. (use only url except 'L%d: ')
+L1: https://arweave.net/TmYCb6amwOqGjXDeKcsoLtQM3Q0mCI8rBM59M8AxBW8
+L2: https://arweave.net/x8IeSUb240mRDyptwYHgrwck6oSEW4inMqVQXqzM-9E
+L3: https://arweave.net/CF8urT2JOZIKi02Z5J7tqhqo80ZxRix3qkn2Q-vmjw0
+L4: https://arweave.net/W0wszvJMGpMMcJTgi52kyyyRxzsy22G2rH5bDmi5jN0
+L5: https://arweave.net/ROmEMxaNbQkHbE1NSwzaCmUl3cktqic4n7MUBDlgJU4
+
+## Get Token Metadata
+
+You can confirm the update of token metadata at 'Token Metadata' page.
+Here, you only need to input token address and then you will receive token metadata.
 
 Enjoy your new token!

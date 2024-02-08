@@ -32,7 +32,6 @@ export const UploadMetadata: FC = ({}) => {
   useEffect(() => {
     if (wallet && wallet.connected) {
       async function connectProvider() {
-        console.log(wallet);
         await wallet.connect();
         const provider = wallet.wallet.adapter;
         await provider.connect();
@@ -63,8 +62,6 @@ export const UploadMetadata: FC = ({}) => {
         provider
       );
     }
-
-    console.log(bundler)
 
     try {
       // Check for valid bundlr node
