@@ -10,9 +10,9 @@ export const AppBar: FC = (props) => {
   return (
     <div>
       {/* NavBar / Header */}
-      <div className="navbar flex flex-row md:mb-2 shadow-lg bg-neutral text-neutral-content">
+      <div className="navbar flex flex-row shadow-lg bg-purple-800 text-neutral-content font-bold text-md font-[Inter]">
         <div className="navbar-start">
-          <div className="hidden sm:inline w-22 h-22 md:p-2">
+          <div className="hidden sm:inline w-22 h-22">
             <svg
               width="100%"
               height="22"

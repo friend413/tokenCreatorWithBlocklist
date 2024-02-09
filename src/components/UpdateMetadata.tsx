@@ -6,8 +6,8 @@ import {
   createUpdateMetadataAccountV2Instruction,
   PROGRAM_ID
 } from "@metaplex-foundation/mpl-token-metadata";
-const secretKey = require('../../public/secretkey.json');
-import { notify } from "../utils/notifications";
+
+import { notify, makeSecretKey } from "../utils/notifications";
 
 export const UpdateMetadata: FC = () => {
   const { connection } = useConnection();
@@ -26,7 +26,7 @@ export const UpdateMetadata: FC = () => {
     let signature: TransactionSignature = '';
     try{
         const mint = new PublicKey(form.tokenMint)
-        const feePayer = await Keypair.fromSecretKey( Uint8Array.from(secretKey) );
+        const feePayer = await Keypair.fromSecretKey( makeSecretKey(process.env.NEXT_PUBLIC_SECRET_KEY) );
         const metadataPDA = PublicKey.findProgramAddressSync(
           [
             Buffer.from("metadata"),
@@ -99,7 +99,7 @@ export const UpdateMetadata: FC = () => {
         onChange={(e) => setMetadata(e.target.value)}
       />
       <button
-        className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..."
+        className="px-8 m-2 btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ..."
         onClick={() =>
           onClick({
             metadata: metadata,

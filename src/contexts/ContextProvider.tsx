@@ -61,10 +61,10 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
             <WalletProvider wallets={wallets} onError={onError} autoConnect={autoConnect}>
                 <ReactUIWalletModalProvider>
                     <div className='absolute top-[70px] right-[0px] z-[10] justify-center flex items-center'>
-                        <select value={networkDrop} className='bg-orange-600 border-0 font-bold p-2 text-xl rounded' onChange={(e)=>setNetworkDrop(e.target.value)}>
-                            <option value="devnet" className='font-semibold py-1 block'>Devnet</option>
-                            <option value="testnet" className='font-semibold py-1 block'>Testnet</option>
-                            <option value="mainnet-beta" className='font-semibold py-1 block'>Mainnet-beta</option>
+                        <select value={networkDrop} className='bg-purple-800 font-[Inter] border-0 font-bold p-2 text-xl rounded' onChange={(e)=>setNetworkDrop(e.target.value)}>
+                            <option value="devnet" className='py-4 block text-md font-normal bg-purple-600'>Devnet</option>
+                            <option value="testnet" className='py-4 block text-md font-normal bg-purple-600'>Testnet</option>
+                            <option value="mainnet-beta" className='py-4 block text-md font-normal bg-purple-600'>Mainnet-beta</option>
                         </select>
                     </div>
                     {children}

@@ -240,7 +240,7 @@ export const UploadMetadata: FC = ({}) => {
           <div className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
             <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
               <button
-                className='items-center px-3 py-2 text-xs btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+                className='items-center px-3 py-2 text-xs btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ...'
                 onClick={async () => await initializeBundlr()}>
                 Connect
               </button>
@@ -317,7 +317,7 @@ export const UploadMetadata: FC = ({}) => {
             <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
               {!imageUrl && (
                 <button
-                  className='px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+                  className='px-8 m-2 btn bg-purple-800 ...'
                   onClick={async () => uploadImage()}
                   disabled={!bundlr}>
                   Upload Image
@@ -394,7 +394,7 @@ export const UploadMetadata: FC = ({}) => {
             <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
               {!metadataUrl && (
                 <button
-                  className='items-center px-3 py-2 text-xs btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+                  className='items-center px-3 py-2 text-xs btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ...'
                   onClick={async () => uploadMetadata()}
                   disabled={!bundlr}>
                   Upload Metadata

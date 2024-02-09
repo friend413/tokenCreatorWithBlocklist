@@ -17,6 +17,11 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family:'Inter', Times, serif;
+  font-weight: 700;
+}
+input {
+  color: #86198f;
 }
 
 /* example: override wallet button style */

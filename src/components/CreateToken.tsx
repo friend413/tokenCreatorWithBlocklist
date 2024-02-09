@@ -16,6 +16,7 @@ export const CreateToken: FC = () => {
 
   const onClick = useCallback(async (form) => {
       let signature: TransactionSignature = '';
+      console.log(form.amount)
       try {
           const lamports = await getMinimumBalanceForRentExemptMint(connection);
           const mintKeypair = Keypair.generate();
@@ -122,7 +123,7 @@ export const CreateToken: FC = () => {
       />
       
       <button
-        className="px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..."
+        className="px-8 m-2 btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ..."
         onClick={() => onClick({decimals: Number(decimals), amount: Number(amount), metadata: metadata, symbol: symbol, tokenName: tokenName})}>
           <span>Create Token</span>
       </button>

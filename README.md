@@ -9,7 +9,7 @@ We recommend choosing devnet. If you choose 'mainnet-beta', you have to pay real
 <h2>## Wallent Connect</h2>
 
 You can use 'select wallet' button to select wallet type and 'connect' button to connect to selected wallet.
-We recommend 'Solflare Wallet'.
+We recommend 'Phantom Wallet'.
 
 And then you need to save your secret key as utf8 int array into 'public/secretKey.json'.
 

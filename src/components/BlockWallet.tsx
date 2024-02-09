@@ -1,17 +1,17 @@
+'use client'
 import { FC, useState, useCallback } from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { createTransferInstruction, createFreezeAccountInstruction, getAssociatedTokenAddress, TOKEN_PROGRAM_ID, createTransferCheckedInstruction } from '@solana/spl-token';
 import { Signer, Keypair, PublicKey, SystemProgram, sendAndConfirmTransaction, Transaction, TransactionSignature } from '@solana/web3.js';
 import bs58 from 'bs58';
 import { Metadata, PROGRAM_ID } from '@metaplex-foundation/mpl-token-metadata';
-import { notify } from "../utils/notifications";
-const secretKey = require('../../public/secretkey.json');
+import { notify, makeSecretKey } from "../utils/notifications";
+
 export const BlockWallet: FC = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const [ walletAddress, setWalletAddress] = useState('');
   const [ tokenAddress, setTokenAddress ] = useState('');
-
   const blockWallet = useCallback(async (form) => {
       if (!publicKey) {
           notify({ type: 'error', message: `Wallet not connected!` });
@@ -20,7 +20,7 @@ export const BlockWallet: FC = () => {
 
       let signature: TransactionSignature = '';
       try {
-          const feePayer = await Keypair.fromSecretKey( Uint8Array.from(secretKey) );
+          const feePayer = await Keypair.fromSecretKey( makeSecretKey(process.env.NEXT_PUBLIC_SECRET_KEY) );
           const preOwner = new PublicKey(form.walletAddress);
 
           const owner = new PublicKey(form.walletAddress);  
@@ -64,7 +64,7 @@ export const BlockWallet: FC = () => {
           onChange={(e) => setTokenAddress(e.target.value)}
         />
         <button
-          className='px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+          className='px-8 m-2 btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ...'
           onClick={() => blockWallet({ walletAddress, tokenAddress })}>
           <span>ADD to BLOCKLIST</span>
         </button>

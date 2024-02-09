@@ -56,7 +56,7 @@ export const GetMetadata: FC = () => {
           onChange={(e) => setTokenAddress(e.target.value)}
         />
         <button
-          className='px-8 m-2 btn animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ...'
+          className='px-8 m-2 btn bg-purple-800 hover:from-pink-500 hover:to-yellow-500 ...'
           onClick={() => getMetadata({ tokenAddress })}>
           <span>Get Metadata</span>
         </button>
