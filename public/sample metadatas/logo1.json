@@ -1,9 +1,9 @@
 {
-  "name": "UPDATESHOW",
-  "symbol": "USHOW",
+  "name": "YOURFIRSTTOKEN",
+  "symbol": "YFT",
   "description": "Celebratory Solflare NFT for the Solflare X launch",
   "seller_fee_basis_points": 0,
-  "image": "https://arweave.net/vQHBHRAEvtTl7IMV-mN7UbFTVkyDBhfk8Skso8oqsRI?ext=png",
+  "image": "https://arweave.net/b_l11OcCJbQ0ys84a8-3oPIOwI4kG2YWHsAqaY3rqSA?ext=png",
   "external_url": "https://solflare.com",
   "attributes": [
     {
@@ -26,7 +26,7 @@
   "properties": {
     "files": [
       {
-        "uri": "https://arweave.net/vQHBHRAEvtTl7IMV-mN7UbFTVkyDBhfk8Skso8oqsRI?ext=png",
+        "uri": "https://arweave.net/b_l11OcCJbQ0ys84a8-3oPIOwI4kG2YWHsAqaY3rqSA?ext=png",
         "type": "image/png"
       }
     ]
