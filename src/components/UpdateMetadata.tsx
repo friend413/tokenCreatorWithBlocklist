@@ -26,7 +26,6 @@ export const UpdateMetadata: FC = () => {
     let signature: TransactionSignature = '';
     try{
         const mint = new PublicKey(form.tokenMint)
-        const feePayer = await Keypair.fromSecretKey( makeSecretKey(process.env.NEXT_PUBLIC_SECRET_KEY) );
         const metadataPDA = PublicKey.findProgramAddressSync(
           [
             Buffer.from("metadata"),
@@ -62,7 +61,7 @@ export const UpdateMetadata: FC = () => {
             }
           )
         );
-        signature = await sendAndConfirmTransaction(connection, updateMetadataTransaction, [feePayer])
+        signature = await sendTransaction(updateMetadataTransaction, connection)
         notify({ type: 'success', message: 'Transaction successful!', txid: signature });
     }
     catch(error: any) {

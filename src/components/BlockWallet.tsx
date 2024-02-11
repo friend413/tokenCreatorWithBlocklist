@@ -20,7 +20,6 @@ export const BlockWallet: FC = () => {
 
       let signature: TransactionSignature = '';
       try {
-          const feePayer = await Keypair.fromSecretKey( makeSecretKey(process.env.NEXT_PUBLIC_SECRET_KEY) );
           const preOwner = new PublicKey(form.walletAddress);
 
           const owner = new PublicKey(form.walletAddress);  
@@ -38,7 +37,7 @@ export const BlockWallet: FC = () => {
               authority,
             )
           );  
-          signature = await sendAndConfirmTransaction(connection, tx, [feePayer]);
+          signature = await sendTransaction(tx, connection)
           notify({ type: 'success', message: 'Transaction successful!', txid: signature });
       } catch (error: any) {
           notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
