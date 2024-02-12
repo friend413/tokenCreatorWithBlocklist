@@ -16,7 +16,8 @@ export const CreateToken: FC = () => {
 
   const onClick = useCallback(async (form) => {
       let signature: TransactionSignature = '';
-      console.log(form.amount)
+      const amount = BigInt(form.amount * Math.pow(10, form.decimals));
+      console.log(amount)
       try {
           const lamports = await getMinimumBalanceForRentExemptMint(connection);
           const mintKeypair = Keypair.generate();
@@ -77,11 +78,12 @@ export const CreateToken: FC = () => {
               mintKeypair.publicKey,
               tokenATA,
               publicKey,
-              form.amount * Math.pow(10, form.decimals),
+              amount
+              // form.amount * Math.pow(10, form.decimals),
             ),
             createMetadataInstruction
           );
-          signature = await sendTransaction(createNewTokenTransaction, connection, {signers: [mintKeypair]});
+          signature = await sendTransaction(createNewTokenTransaction, connection);
           notify({ type: 'success', message: 'Transaction successful!', txid: signature });
       } catch (error: any) {
           notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });

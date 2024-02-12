@@ -20,9 +20,14 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [networkDrop, setNetworkDrop] = useState('devnet');
 
     const [network, setNetwork] = useState(WalletAdapterNetwork.Devnet);
-    const endpoint =  useMemo(() => clusterApiUrl(network), [network]);
-    
+    const setURL = (network) => {
+        if( network === 'mainnet-beta' ) return 'https://g.w.lavanet.xyz:443/gateway/solana/rpc-http/03960a03ace63565d1407727fced34d0';
+        return clusterApiUrl(network);
+    }
+    const endpoint =  useMemo(() => setURL(network), [network]);
+    // const [endpoint, setEndpoint] = useState('https://rpc.ankr.com/solana');
 
+    
     const wallets = useMemo(
         () => [
             new PhantomWalletAdapter(),
@@ -55,6 +60,10 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
 
     }, [networkDrop])
+
+    useEffect(() => {
+        console.log(network)
+    }, [network])
     return (
         // TODO: updates needed for updating and referencing endpoint: wallet adapter rework
         <ConnectionProvider endpoint={endpoint}>

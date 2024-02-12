@@ -59,7 +59,8 @@ export const UploadMetadata: FC = ({}) => {
        bundler = new WebBundlr(
         `${selected.name}`,
         'solana',
-        provider
+        provider,
+        { providerUrl: 'https://g.w.lavanet.xyz:443/gateway/solana/rpc-http/03960a03ace63565d1407727fced34d0' }
       );
     }
 
@@ -126,11 +127,15 @@ export const UploadMetadata: FC = ({}) => {
     const loadedBalance = await bundlr.getLoadedBalance();
     let balance = bundlr.utils.unitConverter(loadedBalance.toNumber());
     balance = balance.toNumber();
-
+    
+    console.log(bundlr)
     if (balance < amount) {
-      await bundlr.fund(LAMPORTS_PER_SOL);
+      const k = Number( LAMPORTS_PER_SOL * Number( amount - balance ) )
+      console.log(k);
+      await bundlr.fund(k);
+      // await bundlr.fund(LAMPORTS_PER_SOL);
     }
-
+    console.log(balance, amount)
     const imageResult = await bundlr.uploader.upload(imageFile, [
       { name: 'Content-Type', value: 'image/png' },
     ]);
@@ -152,7 +157,9 @@ export const UploadMetadata: FC = ({}) => {
     balance = balance.toNumber();
 
     if (balance < amount) {
-      await bundlr.fund(LAMPORTS_PER_SOL);
+      const k = Number( LAMPORTS_PER_SOL * Number( amount - balance ) )
+      console.log(k);
+      await bundlr.fund(k);
     }
 
     const metadataResult = await bundlr.uploader.upload(metadata, [
