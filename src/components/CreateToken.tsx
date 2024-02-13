@@ -1,9 +1,10 @@
 import { FC, useCallback, useState } from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
+import { Keypair, PublicKey, SystemProgram, Transaction, TransactionSignature, sendAndConfirmTransaction } from '@solana/web3.js';
 import { MINT_SIZE, TOKEN_PROGRAM_ID, createInitializeMintInstruction, getMinimumBalanceForRentExemptMint, getAssociatedTokenAddress, createAssociatedTokenAccountInstruction, createMintToInstruction } from '@solana/spl-token';
 import { createCreateMetadataAccountV3Instruction, PROGRAM_ID } from '@metaplex-foundation/mpl-token-metadata';
 import { notify } from "../utils/notifications";
+import base58 from 'bs58';
 
 export const CreateToken: FC = () => {
   const { connection } = useConnection();
@@ -15,6 +16,10 @@ export const CreateToken: FC = () => {
   const [decimals, setDecimals] = useState('')
 
   const onClick = useCallback(async (form) => {
+      if (!publicKey) {
+        notify({ type: 'error', message: `Wallet not connected!` });
+        return;
+      }
       let signature: TransactionSignature = '';
       const amount = BigInt(form.amount * Math.pow(10, form.decimals));
       console.log(amount)
@@ -79,18 +84,16 @@ export const CreateToken: FC = () => {
               tokenATA,
               publicKey,
               amount
-              // form.amount * Math.pow(10, form.decimals),
             ),
             createMetadataInstruction
           );
-          console.log(connection)
-          signature = await sendTransaction(createNewTokenTransaction, connection);
+          signature = await sendTransaction(createNewTokenTransaction, connection, {signers: [mintKeypair]});
           notify({ type: 'success', message: 'Transaction successful!', txid: signature });
       } catch (error: any) {
           notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
           return;
       }
-  }, [publicKey, connection, sendTransaction]);
+  }, [publicKey, connection]);
 
   return (
     <div className="my-6">

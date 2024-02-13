@@ -1,34 +1,6 @@
 {
-  "name": "PepeSol",
-  "symbol": "$PEPE",
+  "name": "AAAAATSOLAAAA",
+  "symbol": "ATSOLA",
   "description": "Celebratory Solflare NFT for the Solflare X launch",
-  "seller_fee_basis_points": 0,
-  "image": "https://arweave.net/8Mnupfbc7SmX1IQQTO1Q25_4AT0Gnw7tiRsY6WXT2zI?ext=png",
-  "external_url": "https://solflare.com",
-  "attributes": [
-    {
-      "trait_type": "web",
-      "value": "yes"
-    },
-    {
-      "trait_type": "mobile",
-      "value": "yes"
-   },
-   {
-      "trait_type": "extension",
-      "value": "yes"
-    }
-  ],
-  "collection": {
-     "name": "UpdatedByFUNC",
-     "family": "Solflare" 
-  },
-  "properties": {
-    "files": [
-      {
-        "uri": "https://arweave.net/8Mnupfbc7SmX1IQQTO1Q25_4AT0Gnw7tiRsY6WXT2zI?ext=png",
-        "type": "image/png"
-      }
-    ]
-  }
+  "image": "https://xae6pzpctdsdtesvmb4ej7w3a2adop4qcz7otcjiz7szstnpinxa.arweave.net/uAnn5eKY5DmSVWB4RP7bBoA3P5AWfumJKM_lmU2vQ24?ext=png"
 }
