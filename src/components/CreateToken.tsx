@@ -83,6 +83,7 @@ export const CreateToken: FC = () => {
             ),
             createMetadataInstruction
           );
+          console.log(connection)
           signature = await sendTransaction(createNewTokenTransaction, connection);
           notify({ type: 'success', message: 'Transaction successful!', txid: signature });
       } catch (error: any) {

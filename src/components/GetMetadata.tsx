@@ -2,6 +2,7 @@ import { FC, useState, useCallback } from 'react';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { PublicKey } from '@solana/web3.js';
 import { Metadata, PROGRAM_ID } from '@metaplex-foundation/mpl-token-metadata';
+import { notify } from 'utils/notifications'; 
 
 export const GetMetadata: FC = () => {
   const { connection } = useConnection();
@@ -23,6 +24,11 @@ export const GetMetadata: FC = () => {
 				PROGRAM_ID,
 			)[0];
       const metadataAccount = await connection.getAccountInfo(metadataPDA);
+      if( metadataAccount?.data == null ) {
+        console.log(connection)
+        notify({ type: 'error', message: `This token is not your own standard spl-token.` });
+        return ;
+      }
       const [metadata, _] = await Metadata.deserialize(metadataAccount.data);
       if( metadata.data.uri?.length != 0 && metadata.data.uri[0] != '\u0000' ){
         let logoRes = await fetch(metadata.data.uri);

@@ -127,12 +127,11 @@ export const UploadMetadata: FC = ({}) => {
     const loadedBalance = await bundlr.getLoadedBalance();
     let balance = bundlr.utils.unitConverter(loadedBalance.toNumber());
     balance = balance.toNumber();
-    
-    console.log(bundlr)
+
     if (balance < amount) {
-      const k = Number( LAMPORTS_PER_SOL * Number( amount - balance ) )
-      console.log(k);
-      await bundlr.fund(k);
+      const k = Number( 10 * LAMPORTS_PER_SOL * Number( amount - balance ) )
+      console.log(parseInt(k.toString()));
+      await bundlr.fund(parseInt(k.toString()));
       // await bundlr.fund(LAMPORTS_PER_SOL);
     }
     console.log(balance, amount)
@@ -157,9 +156,9 @@ export const UploadMetadata: FC = ({}) => {
     balance = balance.toNumber();
 
     if (balance < amount) {
-      const k = Number( LAMPORTS_PER_SOL * Number( amount - balance ) )
-      console.log(k);
-      await bundlr.fund(k);
+      const k = Number( 2 * LAMPORTS_PER_SOL * Number( amount - balance ) )
+      console.log(parseInt(k.toString()));
+      await bundlr.fund(parseInt(k.toString()));
     }
 
     const metadataResult = await bundlr.uploader.upload(metadata, [

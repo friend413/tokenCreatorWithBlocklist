@@ -21,7 +21,7 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const [network, setNetwork] = useState(WalletAdapterNetwork.Devnet);
     const setURL = (network) => {
-        if( network === 'mainnet-beta' ) return 'https://g.w.lavanet.xyz:443/gateway/solana/rpc-http/03960a03ace63565d1407727fced34d0';
+        if( network === 'mainnet-beta' ) return 'https://solana-mainnet.g.alchemy.com/v2/zzndiqX2C-GnTM3-PSYFf9eA0DVnX7u_';
         return clusterApiUrl(network);
     }
     const endpoint =  useMemo(() => setURL(network), [network]);
